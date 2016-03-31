@@ -25,7 +25,7 @@ var mainstate = {
     this.timer = game.time.events.loop(1500, this.addRowWallBlock, this);
 
     // score
-    this.score = 0;
+    this.score = -1;
     this.labelScore = game.add.text(20, 20, '0',
       {font: '30px Helvetica', fill: '#ffffff'});
 
@@ -38,6 +38,7 @@ var mainstate = {
   update: function() {
     // reset if player is too higher or too low on screen
     if(this.player.y < 0 || this.player.y > 490) this.restartGame();
+    // reset on collision
     game.physics.arcade.overlap(this.player, this.walls, this.restartGame, null, this);
   },
 
@@ -67,6 +68,9 @@ var mainstate = {
         this.addOneWallBlock(400, i * 60 + 10);
       }
     }
+    // score if player is still alive when next wall spawns
+    this.score += 1;
+    if(this.score > 0) this.labelScore.text = this.score;
   }
 };
 

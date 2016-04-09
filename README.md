@@ -5,7 +5,7 @@ FlappyBird + Phaser
 
 A fun little game I made in an hour or so.
 
-Since this is a broser game and javascript can't read files from your
+Since this is a browser game and javascript can't read files from your
 system, you will need to start a webserver.
 
 Do `python -m SimpleHTTPServer` in the root directory then go to

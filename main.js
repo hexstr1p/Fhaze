@@ -7,6 +7,7 @@ var mainstate = {
     game.load.image('wall', 'assets/obstacle.png');
     game.load.audio('jump', 'assets/jump2.wav');
     game.load.audio('hit', 'assets/hitWall.wav');
+    game.load.audio('point', 'assets/point.wav');
   },
 
 
@@ -19,6 +20,7 @@ var mainstate = {
     // sound stuff
     this.jumpSound = game.add.audio('jump');
     this.hitWallSound = game.add.audio('hit');
+    this.pointSound = game.add.audio('point');
 
     // player stuff
     this.player = game.add.sprite(100, 245, 'player');
@@ -106,7 +108,10 @@ var mainstate = {
     }
     // score if player is still alive when next wall spawns
     this.score += 1;
-    if(this.score > 0) this.labelScore.text = this.score;
+    if(this.score > 0) {
+      this.labelScore.text = this.score;
+      this.pointSound.play();
+    }
   }
 };
 

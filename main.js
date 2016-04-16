@@ -41,14 +41,29 @@ var mainstate = {
     // reset if player is too higher or too low on screen
     if(this.player.y < 0 || this.player.y > 490) this.restartGame();
     // reset on collision
-    game.physics.arcade.overlap(this.player, this.walls, this.restartGame, null, this);
+    game.physics.arcade.overlap(this.player, this.walls, this.hitWall, null, this);
 
     // animation to rotate downward
     if(this.player.angle < 20) this.player.angle += 1;
   },
 
+  hitWall: function() {
+    if(!this.player.alive) return;
+
+    // kill player
+    this.player.alive = false;
+    // stop walls from appearing
+    game.time.events.remove(this.timer);
+    // stop all wall movement
+    this.walls.forEach(function(w) {
+      w.body.velocity = 0;
+    }, this);
+  },
+
 
   jump: function() {
+    if(!this.player.alive) return;
+
     this.player.body.velocity.y = -350;
 
     // creating an animation on the player

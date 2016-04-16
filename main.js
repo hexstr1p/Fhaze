@@ -12,6 +12,17 @@ var mainstate = {
 
 
   create: function() {
+    // moble platfrom targeting
+    if(!game.device.desktop) {
+      game.scale.scaleMode = Phaser.ScaleManager.SHOW_ALL;
+      game.scale.setMinMax(game.width/2, game.height/2, game.width, game.height);
+      game.scale.pageAlignHorizontally = true;
+      game.scale.pageAlignVertically = true;
+    }
+
+    game.scale.pageAlignHorizontally = true;
+    game.scale.pageAlignVertically = true;
+
     game.stage.backgroundColor = '#2e62c7';
 
     // start the physics system
@@ -42,6 +53,8 @@ var mainstate = {
     // controls
     var spacekey = game.input.keyboard.addKey(Phaser.Keyboard.SPACEBAR);
     spacekey.onDown.add(this.jump, this);
+    // mobile
+    game.input.onDown.add(this.jump, this);
   },
 
 

@@ -18,6 +18,8 @@ var mainstate = {
     this.player = game.add.sprite(100, 245, 'player');
     game.physics.arcade.enable(this.player);
     this.player.body.gravity.y = 1000;
+    // changes anchor so animation looks better
+    this.player.anchor.setTo(-0.2, 0.5);
 
     // wall stuff
     this.walls = game.add.group();
@@ -40,11 +42,21 @@ var mainstate = {
     if(this.player.y < 0 || this.player.y > 490) this.restartGame();
     // reset on collision
     game.physics.arcade.overlap(this.player, this.walls, this.restartGame, null, this);
+
+    // animation to rotate downward
+    if(this.player.angle < 20) this.player.angle += 1;
   },
 
 
   jump: function() {
     this.player.body.velocity.y = -350;
+
+    // creating an animation on the player
+    var animation = game.add.tween(this.player);
+    // change angle to -20 degrees in 100 milliseconds
+    animation.to({angle: -20}, 100);
+    // start animation
+    animation.start();
   },
 
   restartGame: function() {

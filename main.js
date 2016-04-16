@@ -5,6 +5,8 @@ var mainstate = {
   preload: function() {
     game.load.image('player', 'assets/fhazer_player_50.png');
     game.load.image('wall', 'assets/obstacle.png');
+    game.load.audio('jump', 'assets/jump2.wav');
+    game.load.audio('hit', 'assets/hitWall.wav');
   },
 
 
@@ -13,6 +15,10 @@ var mainstate = {
 
     // start the physics system
     game.physics.startSystem(Phaser.Physics.ARCADE);
+
+    // sound stuff
+    this.jumpSound = game.add.audio('jump');
+    this.hitWallSound = game.add.audio('hit');
 
     // player stuff
     this.player = game.add.sprite(100, 245, 'player');
@@ -50,6 +56,8 @@ var mainstate = {
   hitWall: function() {
     if(!this.player.alive) return;
 
+    this.hitWallSound.play();
+
     // kill player
     this.player.alive = false;
     // stop walls from appearing
@@ -64,6 +72,7 @@ var mainstate = {
   jump: function() {
     if(!this.player.alive) return;
 
+    this.jumpSound.play();
     this.player.body.velocity.y = -350;
 
     // creating an animation on the player

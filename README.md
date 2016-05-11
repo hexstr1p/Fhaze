@@ -3,6 +3,8 @@ FlappyBird + Phaser
 
 ![smol](/assets/fhazer_player.png)
 
+-------------------------
+
 A fun little game I made in an hour or so.
 
 Since this is a browser game and javascript can't read files from your

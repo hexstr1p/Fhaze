@@ -4,6 +4,7 @@ FlappyBird + Phaser
 ![smol](/assets/fhazer_player.png)
 
 -------------------------
+-------------------------
 
 A fun little game I made in an hour or so.
 
